@@ -13,7 +13,7 @@
     Данные на входе: 1 2 3
     Данные на выходе: 1+2+3=6
     1*2*3=6
-    
+
     Пример №2:
     Данные на входе: 4 5 7
     Данные на выходе: 4+5+7=16
@@ -25,8 +25,8 @@ int main(void)
     int a, b , c;
     printf("Input three digits:");
     scanf("%d %d %d", &a, &b, &c);
-    printf("%d + %d + %d = %d \n",a, b, c, a+b+c);
-    printf("%d * %d * %d = %d \n",a, b, c, a*b*c);
+    printf("%d + %d + %d = %d \n", a, b, c, a+b+c);
+    printf("%d * %d * %d = %d \n", a, b, c, a*b*c);
 
     return 0;
 }
