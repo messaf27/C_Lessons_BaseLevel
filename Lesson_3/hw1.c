@@ -14,16 +14,16 @@
 
 #include <stdio.h>
 
-#define ARRAY_SIZE(arr)    (sizeof(arr) / sizeof(arr[0]))
+#define ARRAY_SIZE      5
 
 int main(void)
 {
     int max = 0;
-    int inputDigits[5] = {0,};
+    int inputDigits[ARRAY_SIZE] = {0,};
 
-    printf("--- Input five digits --- \n");
+    printf("--- Input %d digits --- \n", ARRAY_SIZE);
 
-    for (int i = 0; i < ARRAY_SIZE(inputDigits); i++)
+    for (int i = 0; i < ARRAY_SIZE; i++)
     {
         printf("Input (%d): ", i + 1);
         scanf("%d", &inputDigits[i]);

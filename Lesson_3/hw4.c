@@ -48,7 +48,7 @@ int main(void)
                 printf("autumn");
             break;
         default:
-            printf("ERROR month number!!! (1-12)");
+            printf("ERROR month number!!! (1...12)");
     }
  
     return 0;
