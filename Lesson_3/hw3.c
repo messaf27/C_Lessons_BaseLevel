@@ -15,26 +15,20 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define ARRAY_SIZE(arr)    (sizeof(arr) / sizeof(arr[0]))
-
 int main(void)
 {
-    bool yesFlag = false;
-    int lastDig = 0;
-    int inputDigits[3] = {0,};
+    bool yesFlag = true;
+    int lastDig = 0, curDigit = 0;
 
     printf("--- Input three digits --- \n");
 
-    for (int i = 0; i < ARRAY_SIZE(inputDigits); i++)
+    for (int i = 0; i < 3; i++)
     {
         printf("Input (%d): ", i + 1);
-        scanf("%d", &inputDigits[i]);
+        scanf("%d", &curDigit);
 
-        if(inputDigits[i] > lastDig)
-        {
-            lastDig = inputDigits[i];
-            yesFlag = true;
-        }
+        if(curDigit > lastDig && yesFlag)
+            lastDig = curDigit;
         else
             yesFlag = false;    
     }
