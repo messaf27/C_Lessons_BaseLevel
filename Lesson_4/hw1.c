@@ -31,7 +31,7 @@ int main()
     for (int i = a; i <= b; i++)
         result += (i*i);
 
-    printf("Result: %d", result);
+    printf("Result: %d \n", result);
 
     return 0;
 }
