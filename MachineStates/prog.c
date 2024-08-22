@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <math.h>
 
 #include <inttypes.h>
 #include <conio.h>
@@ -84,11 +86,28 @@ void print_float_bin(float num)
     
 }
 
+bool float_check(float one, float two, float err_rate)
+{
+    return fabs(one - two) < err_rate;
+}
+
 int main()
 {
     // factorial(3);
-    decode_to_bin(100);
-    print_float_bin(15.625);
+    // decode_to_bin(100);
+
+    float one = 1, one_error = 0;
+    // print_float_bin(0.1);
+
+    for (int i = 0; i < 10; i++, one_error += 0.1);
+
+    printf("one = %f\n", one);
+    printf("one_error = %f\n", one_error);
+
+    print_float_bin(one);
+    print_float_bin(one_error);
+
+    printf("check float %s \n", float_check(0.0001, 0.0002, 0.001) ? "OK" : "FAIL");
 
     // enum states state = READY;
     // enum signals signal = NONE;
