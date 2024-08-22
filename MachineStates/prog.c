@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <inttypes.h>
 #include <conio.h>
@@ -48,48 +49,87 @@ uint8_t GetUserSignal(void)
     }
 }
 
+uint16_t factorial(uint16_t n)
+{
+    printf("%d\n", n);
+    if(n <= 1)
+        return 1;
+
+    uint16_t _f = n * factorial(n - 1);
+    printf("%d * factorial(%d) = %d\n", n, n - 1, _f);    
+    return _f;
+}
+
+void decode_to_bin(int n)
+{
+    if(n >= 2)
+        decode_to_bin(n / 2);
+    printf("%d", n % 2);    
+}
+
+void print_float_bin(float num)
+{
+    int fi;
+    memcpy(&fi, &num, 4);
+    for (int i = 31; i >= 0; i--)
+    {
+        if(i == 30 || i == 22)
+            putchar(' ');
+        if(fi & (1 << i)) 
+            putchar('1');
+        else
+            putchar('0');   
+    }
+    putchar('\n');
+    
+}
+
 int main()
 {
-    enum states state = READY;
-    enum signals signal = NONE;
+    // factorial(3);
+    decode_to_bin(100);
+    print_float_bin(15.625);
 
-    while (1)
-    {
-        switch (state)
-        {
-            case READY:
-                printf("Ready!\n");
-                signal = GetUserSignal();
-                if(signal == ONE_RUBLE) state = WAIT;
-                if(signal == TWO_RUBLE) state = PREPARE;
-            break;
+    // enum states state = READY;
+    // enum signals signal = NONE;
 
-            case PREPARE:
-                printf("Prepare cofe!\n");
-                state = READY;
-            break;
+    // while (1)
+    // {
+    //     switch (state)
+    //     {
+    //         case READY:
+    //             printf("Ready!\n");
+    //             signal = GetUserSignal();
+    //             if(signal == ONE_RUBLE) state = WAIT;
+    //             if(signal == TWO_RUBLE) state = PREPARE;
+    //         break;
 
-            case WAIT:
-                printf("Wait!\n");
-                signal = GetUserSignal();
-                if(signal == ONE_RUBLE) state = PREPARE;
-                if(signal == TWO_RUBLE) state = CHANGE;
-                if(signal == CANCEL) state = RETURN;
-            break;
+    //         case PREPARE:
+    //             printf("Prepare cofe!\n");
+    //             state = READY;
+    //         break;
 
-            case CHANGE:
-                printf("Change 1 ruble!\n");
-                state = PREPARE;
-                break;
+    //         case WAIT:
+    //             printf("Wait!\n");
+    //             signal = GetUserSignal();
+    //             if(signal == ONE_RUBLE) state = PREPARE;
+    //             if(signal == TWO_RUBLE) state = CHANGE;
+    //             if(signal == CANCEL) state = RETURN;
+    //         break;
 
-            case RETURN:
-            printf("Change 1 ruble\n");
-            state = READY;
+    //         case CHANGE:
+    //             printf("Change 1 ruble!\n");
+    //             state = PREPARE;
+    //             break;
 
-            default:
-                break;
-        }
-    }
+    //         case RETURN:
+    //         printf("Change 1 ruble\n");
+    //         state = READY;
+
+    //         default:
+    //             break;
+    //     }
+    // }
     
     return 0;
 }
